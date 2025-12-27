@@ -5,12 +5,13 @@
 My Sqlite solves the task of making an sqlite simulation, complete with a CLI (command line interface).
 
 ## Description
-The project contains two files - my_sqlite_request.rb and my_sqlite_cli.rb. The file my_sqlite_request.rb contains a class that allows to make several kinds of SQL requests within the file itself (see "Usage"). The file my_sqlite_cli.rb provides a CLI that allows to make the same kinds of SQL requests in the typical SQL format.
-The kinds of requests handled by this project are:
-SELECT (optional: JOIN ON, WHERE, ORDER BY)
-INSERT
-UPDATE
-DELETE
+The project contains two files - my_sqlite_request.rb and my_sqlite_cli.rb. The file my_sqlite_request.rb contains a class that allows to make several kinds of SQL-like requests within the file itself (see "Usage"). The file my_sqlite_cli.rb provides a CLI that allows to make the same kinds of SQL requests from the command line in the typical SQL format.<br>
+The kinds of requests handled by this project are:<br>
+SELECT (optional: JOIN ON, WHERE, ORDER BY)<br>
+INSERT<br>
+UPDATE<br>
+DELETE<br>
+The project is designed to work with CSV files that can have a .csv or .db extension.
 
 ## Installation
 In order to run this project, Ruby needs to be installed. The CSV files that you want to work on must be placed in the same folder with the project files.
