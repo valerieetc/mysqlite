@@ -127,10 +127,10 @@ def select
 
         where_criteria = @input[pos_where + 1..last_word].join(" ").split('=')
         where_criteria = where_criteria.map do |word|
-            word.strip.delete_prefix("'").delete_suffix("'")
-        end  
+            word.strip
+        end 
         where_column = where_criteria.first
-        where_condition = where_criteria.last
+        where_condition = where_criteria.last.delete_prefix("'").delete_suffix("'")
     end
 
     #if there is an ORDER request, gets ORDER data
@@ -233,10 +233,10 @@ def update
     #gets the WHERE criteria for the row that should be updated
     where_criteria = @input[pos_where + 1..@input.length - 1].join(" ").split('=')
     where_criteria = where_criteria.map do |word|
-        word.strip.delete_prefix("'").delete_suffix("'")
+        word.strip
     end  
     where_column = where_criteria.first
-    where_condition = where_criteria.last
+    where_condition = where_criteria.last.delete_prefix("'").delete_suffix("'")
 
     request = MySqliteRequest.new.update(@table_name).set(update_hash).where(where_column, where_condition).run   
 
@@ -258,13 +258,15 @@ def delete
     #gets the WHERE criteria for the row that should be deleted
     where_criteria = @input[4..@input.length - 1].join(" ").split('=')
     where_criteria = where_criteria.map do |word|
-        word.strip.delete_prefix("'").delete_suffix("'")
+        word.strip
     end  
     where_column = where_criteria.first
-    where_condition = where_criteria.last
+    where_condition = where_criteria.last.delete_prefix("'").delete_suffix("'")
 
     request = MySqliteRequest.new(@table_name).delete.where(where_column, where_condition).run    
 end
+
+
 
 
 if ARGV.length != 1 
@@ -279,6 +281,7 @@ if !File.exist?(@table_name)
 end
 
 puts "MySQLite version 0.1 #{Time.new.strftime("%Y-%m-%d")}"
+
 
 while input = Readline.readline("my_sqlite_cli> ", true)
     if input.strip == "quit"
