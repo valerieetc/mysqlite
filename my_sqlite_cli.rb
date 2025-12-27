@@ -62,6 +62,10 @@ def select
         value.strip
     end
 
+    if select_columns.length == 1
+        select_columns = select_columns.first
+    end
+
     #if there is a JOIN, gets second file name and JOIN columns
     if @input.include?('JOIN')
 
