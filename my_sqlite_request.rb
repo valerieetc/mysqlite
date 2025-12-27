@@ -147,7 +147,7 @@ class MySqliteRequest
         end
 
         rescue => e
-            puts "Error: #{e.message}"
+            puts "#{e.message}"
             return nil
         end
     end
@@ -307,3 +307,47 @@ class MySqliteRequest
     end
 
 end
+
+
+
+
+#SELECT tests
+#request = MySqliteRequest.new("nba_player_data.csv")
+#request = request.select(["name", "year_start", "height"])
+#request = request.insert("lalala")
+#request = request.select([])
+#request = request.select("    ")
+#request = request.select("name")
+#request = request.select("*")
+#request = request.join("name", "nba_players.csv", "Player")
+#request = request.where("year_start", "1969")
+#request = request.order(:desc, "name")
+#request.run
+
+
+#INSERT tests
+#request = MySqliteRequest.new
+#request = request.insert("sample_one.csv")
+#request = request.values({"name" => "Jane Doe", "year_start" => "2000", "year_end" => "2001", "position" => "top", "height" => "200", "weight" => "121", "birth_date" => "19 March, 1991", "college" => "Latvijas Universitate"})
+#request = request.values({"year_start" => "2000", "name" => "John Doe", "year_end" => "2001", "position" => "top", "height" => "200", "weight" => "121", "birth_date" => "19 March, 1991", "college" => "Latvijas Universitate"})
+#request.run
+
+
+#DELETE tests
+#request = MySqliteRequest.new("sample_one.csv")
+#request = request.delete
+#request = request.insert("lalala")
+#request = request.delete.where("name", "Tom Abernethy")
+#request = request.where("year_start", "1954")
+#request.run
+
+
+#UPDATE tests
+#request = MySqliteRequest.new
+#request = request.update("sample_one.csv")
+#request = request.set({"year_start" => "29999", "height" => "hihihi", "college" => "Latvijas Universitate"})
+#request = request.where("name", "Tariq Abdul-Wahad")
+#request.run
+
+
+#request = MySqliteRequest.new.update(csv_string).set({"year_start" => "2000", "height" => "hihihi", "college" => "Latvijas Universitate"}).where("name", "Alaa Abdelnaby").run
