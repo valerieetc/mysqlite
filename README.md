@@ -25,15 +25,15 @@ The project works with CSV-formatted data files using either `.csv` or `.db` ext
 ## Usage
 Using my_sqlite_request.rb:
 The class can be used through method chaining:
-- SELECT example
+SELECT example:
 request = MySqliteRequest.new('students.csv').select(['name', 'age']).where('city', 'Riga').run
-- INSERT example
+INSERT example:
 request = MySqliteRequest.new.insert('students.csv').values({'name' => 'John', 'age' => '20', 'city' => 'Riga'}).run
-- UPDATE example
+UPDATE example:
 request = MySqliteRequest.new.update('students.csv').set({'age' => '21'}).where('name', 'John').run
-- DELETE example
+DELETE example:
 request = MySqliteRequest.new('students.csv').delete.where('name', 'John').run 
-- JOIN example
+JOIN example:
 request = MySqliteRequest.new('students.csv').select(['name', 'age']).join('name', 'second_table.csv', 'Student')
 
 Run with:
