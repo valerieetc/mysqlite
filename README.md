@@ -26,25 +26,16 @@ The project works with CSV-formatted data files using either `.csv` or `.db` ext
 Using my_sqlite_request.rb:
 The class can be used through method chaining:
 
-SELECT example:
-
-request = MySqliteRequest.new('students.csv').select(['name', 'age']).where('city', 'Riga').run
-
-INSERT example:
-
-request = MySqliteRequest.new.insert('students.csv').values({'name' => 'John', 'age' => '20', 'city' => 'Riga'}).run
-
-UPDATE example:
-
-request = MySqliteRequest.new.update('students.csv').set({'age' => '21'}).where('name', 'John').run
-
-DELETE example:
-
-request = MySqliteRequest.new('students.csv').delete.where('name', 'John').run 
-
-JOIN example:
-
-request = MySqliteRequest.new('students.csv').select(['name', 'age']).join('name', 'second_table.csv', 'Student')
+SELECT example:<br>
+request = MySqliteRequest.new('students.csv').select(['name', 'age']).where('city', 'Riga').run<br>
+INSERT example:<br>
+request = MySqliteRequest.new.insert('students.csv').values({'name' => 'John', 'age' => '20', 'city' => 'Riga'}).run<br>
+UPDATE example:<br>
+request = MySqliteRequest.new.update('students.csv').set({'age' => '21'}).where('name', 'John').run<br>
+DELETE example:<br>
+request = MySqliteRequest.new('students.csv').delete.where('name', 'John').run <br>
+JOIN example:<br>
+request = MySqliteRequest.new('students.csv').select(['name', 'age']).join('name', 'second_table.csv', 'Student')<br>
 
 Run with:
 ```
@@ -67,13 +58,13 @@ Request examples:
 
 SELECT * FROM table_name; <br>
 SELECT column1, column2 FROM table_name; <br>
-SELECT * FROM table_name WHERE column = 'value';
-SELECT * FROM table_name WHERE column = 'value' ORDER BY column ASC;
-SELECT * FROM table_name ORDER BY column DESC;
+SELECT * FROM table_name WHERE column = 'value';<br>
+SELECT * FROM table_name WHERE column = 'value' ORDER BY column ASC;<br>
+SELECT * FROM table_name ORDER BY column DESC;<br>
 
-SELECT * FROM table_name JOIN second_table ON table_name.column1 = second_table.column2;
-SELECT * FROM table_name JOIN second_table ON table_name.column1 = second_table.column2 WHERE table_name.column = 'value';
-SELECT * FROM table_name JOIN second_table ON table_name.column1 = second_table.column2 ORDER BY table_name.column ASC;
+SELECT * FROM table_name JOIN second_table ON table_name.column1 = second_table.column2;<br>
+SELECT * FROM table_name JOIN second_table ON table_name.column1 = second_table.column2 WHERE table_name.column = 'value';<br>
+SELECT * FROM table_name JOIN second_table ON table_name.column1 = second_table.column2 ORDER BY table_name.column ASC;<br>
 
 Note for JOIN: Column names in SELECT support `column` syntax, but ON, WHERE, and ORDER BY clauses support `table.column` syntax.
 
