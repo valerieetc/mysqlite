@@ -231,7 +231,7 @@ class MySqliteRequest
                 @select_columns.each do |column|
                     temp_result << row[column]
                 end
-                temp_result = temp_result.join(",")
+                temp_result = temp_result.join("|")
                 result << temp_result
                 temp_result = []
             end
