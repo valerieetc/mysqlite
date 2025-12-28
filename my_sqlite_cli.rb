@@ -196,7 +196,7 @@ def select
     request = request.join(column_one, second_table, column_two) if is_join == :yes  
     request = request.where(where_column, where_condition) if is_where == :yes
     request = request.order(order, order_column) if is_order == :yes
-    request = request.run
+    request = request.run(:pipe)
 
 end
 
