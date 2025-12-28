@@ -215,6 +215,10 @@ def insert
 
     #makes an array of values that need to be inserted
     values = @input[4..@input.length - 1].join(' ')
+    if values[0] != '(' || values[values.length - 1] != ')'
+        puts "Values must be enclosed in ()"
+        return
+    end
     values = values.delete_prefix('(').delete_suffix(')')
     values = values.gsub(/,\s+'/, ",'")
     values = CSV.parse_line(values, liberal_parsing: true, quote_char: "'")
