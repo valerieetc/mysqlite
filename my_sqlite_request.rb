@@ -212,6 +212,10 @@ class MySqliteRequest
         end        
 
         if defined?(@order)
+            if !@data.headers.include?(@order_column)
+                raise "Unrecognized column name in order method"
+            end
+
             if @order == :asc
                 @data = @data.sort_by { |row| row[@order_column] }
             else
