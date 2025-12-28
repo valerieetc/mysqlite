@@ -134,14 +134,33 @@ def select
             word.strip
         end 
         where_column = where_criteria.first
+        if is_join == :yes
+            where_column = where_column.split('.')
+            if where_column.last == @table_name.split('.').first || where_column.last == second_table.split('.').first
+                where_column = where_column.first
+            else
+                puts "Invalid WHERE column/table name"
+                return
+            end
+        end
         where_condition = where_criteria.last.delete_prefix("'").delete_suffix("'")
     end
 
     #if there is an ORDER request, gets ORDER data
-    if @input.include?('ORDER') && @input[@input.index('ORDER') + 1] == 'BY'       
+    if @input.include?('ORDER') #&& @input[@input.index('ORDER') + 1] == 'BY'       
         is_order = :yes
 
+        if @input[@input.index('ORDER') + 1] != 'BY'
+            puts "Invalid format"
+            return
+        end
+
         pos_by = @input.index('BY')
+
+        if pos_by == @input.length - 1
+            puts "Invalid format"
+            return
+        end
 
         if @input[pos_by + 1] == @input[@input.length - 1]
             order_column = @input[pos_by + 1]
@@ -159,6 +178,16 @@ def select
         else 
             puts "Invalid format"
             return
+        end
+
+        if is_join == :yes && defined?(order_column)
+            order_column = order_column.split('.')
+            if order_column.last == @table_name.split('.').first || order_column.last == second_table.split('.').first
+                order_column = order_column.first
+            else
+                puts "Invalid ORDER column/table name"
+                return
+            end
         end
 
     end
