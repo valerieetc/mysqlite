@@ -41,7 +41,8 @@ SELECT column1, column2 ... FROM table_name WHERE column = 'value';<br>
 SELECT column1, column2 ... FROM table_name WHERE column = 'value' ORDER BY column ASC|DESC; <br>
 For ORDER BY you can omit ASC for ascending, but must include DESC for descending.<br>
 SELECT column1, column2 ... FROM table_name JOIN second_table ON column1.table_name = column2.second_table; <br>
-For JOIN requests the selection column names must be provided without specifying the table. A JOIN request can be followed by WHERE and ORDER BY. <br>
+For JOIN requests the selection column names must be provided without specifying the table. A JOIN request can be followed by WHERE and/or ORDER BY: <br>
+SELECT column1, column2 ... FROM table_name JOIN second_table ON column1.table_name = column2.second_table WHERE column.table_name = 'value' ORDER BY column.table_name ASC|DESC; <br>
 INSERT INTO table_name VALUES (value1, value2, value3);<br>
 UPDATE table_name SET column1 = 'value1', column2 = 'value2'... WHERE column = 'value';<br>
 DELETE FROM table_name WHERE column = 'value';<br>
