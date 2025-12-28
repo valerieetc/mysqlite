@@ -127,7 +127,7 @@ class MySqliteRequest
 ####      END OF UPDATE QUERY BLOCK     #### 
     
 
-    def run
+    def run(output_format = :hash)
         begin
         @data = CSV.read(@table_name, headers: true, liberal_parsing: true, quote_char: '"')
 
@@ -135,7 +135,7 @@ class MySqliteRequest
             if @join == :yes
                 run_join
             end
-            run_select
+            run_select(output_format)
         elsif @type_of_request == :insert
             run_insert
         elsif @type_of_request == :delete
@@ -194,7 +194,7 @@ class MySqliteRequest
     end
     
 
-    def run_select
+    def run_select(output_format)
 
         if @select_columns.empty?
             @select_columns = @data.headers
@@ -224,16 +224,27 @@ class MySqliteRequest
         end
 
         #finds the rows that need to get displayed
+        #if requests are being made from this file, it returns the results as a hash, as shown in the Qwasar example
+        #if requests are being made through the CLI, results are returned as values separated by '|'
         temp_result = []
         result = [] 
         @data.each do |row|
             if !defined?(@where_column) || row[@where_column] == @criteria
-                @select_columns.each do |column|
-                    temp_result << row[column]
+                if output_format == :hash
+                    row_hash = {}
+                    @select_columns.each do |column|
+                        row_hash[column] = row[column]
+                    end
+                    result << row_hash
+                    row_hash = {}
+                else
+                    @select_columns.each do |column|
+                        temp_result << row[column]
+                    end
+                    temp_result = temp_result.join("|")
+                    result << temp_result
+                    temp_result = []
                 end
-                temp_result = temp_result.join("|")
-                result << temp_result
-                temp_result = []
             end
         end
 
