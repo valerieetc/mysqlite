@@ -65,8 +65,8 @@ SQL request format rules:
 
 Request examples:
 
-SELECT * FROM table_name;
-SELECT column1, column2 FROM table_name;
+SELECT * FROM table_name; <br>
+SELECT column1, column2 FROM table_name; <br>
 SELECT * FROM table_name WHERE column = 'value';
 SELECT * FROM table_name WHERE column = 'value' ORDER BY column ASC;
 SELECT * FROM table_name ORDER BY column DESC;
